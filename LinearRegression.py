@@ -1,17 +1,8 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np 
 import tensorflow as tf 
 import matplotlib.pyplot as plt
 
-
-# In[6]:
-
-
+#Randomizing the matrixes with a seed value
 np.random.seed(101) 
 tf.set_random_seed(101) 
 
@@ -23,19 +14,11 @@ y += np.random.uniform(-2,2,50)
 
 n = len(x) # Number of data points 
 
-
-# In[7]:
-
-
 plt.scatter(x, y) 
 plt.xlabel('x') 
 plt.ylabel('y') 
 plt.title("Training Data") 
 plt.show() 
-
-
-# In[8]:
-
 
 X = tf.placeholder("float") 
 Y = tf.placeholder("float") 
@@ -68,7 +51,7 @@ with tf.Session() as sess:
         if (epoch + 1) % 50 == 0: 
             # Calculating the cost a every epoch 
             c = sess.run(cost, feed_dict = {X : x, Y : y}) 
-            print("Epoch", (epoch + 1), ": cost =", c, "W =", sess.run(W), "b =", sess.run(b)) 
+            print("Epoch", (epoch + 1), ": Cost =", c, "W =", sess.run(W), "b =", sess.run(b)) 
 
     # Storing necessary values to be used outside the Session 
     training_cost = sess.run(cost, feed_dict ={X: x, Y: y}) 
@@ -80,7 +63,7 @@ with tf.Session() as sess:
 
 
 predictions = weight * x + bias 
-print("Training cost =", training_cost, "Weight =", weight, "bias =", bias, '\n') 
+print("Training cost =", training_cost, "Weight =", weight, "Bias =", bias, '\n') 
 
 
 # In[11]:
@@ -88,7 +71,7 @@ print("Training cost =", training_cost, "Weight =", weight, "bias =", bias, '\n'
 
 plt.plot(x, y, 'ro', label ='Original data') 
 plt.plot(x, predictions, label ='Fitted line') 
-plt.title('Linear Regression Result') 
+plt.title('Linear regression result') 
 plt.legend() 
 plt.show()
 
